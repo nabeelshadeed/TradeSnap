@@ -4,7 +4,8 @@ import { eq } from 'drizzle-orm'
 
 export const dynamic = 'force-dynamic'
 
-export async function GET(req: NextRequest, { params }: { params: { token: string } }) {
+export async function GET(req: NextRequest, props: { params: Promise<{ token: string }> }) {
+  const params = await props.params;
   const db = getDb()
 
   const job = await db.query.jobs.findFirst({

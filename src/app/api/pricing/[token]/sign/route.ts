@@ -6,7 +6,8 @@ import { rateLimitByIp } from '@/lib/rate-limit'
 
 export const dynamic = 'force-dynamic'
 
-export async function POST(req: NextRequest, { params }: { params: { token: string } }) {
+export async function POST(req: NextRequest, props: { params: Promise<{ token: string }> }) {
+  const params = await props.params;
   const rl = await rateLimitByIp(req, 'quote-sign', 10, 60)
   if (!rl.ok) return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
 

@@ -9,7 +9,8 @@ import { EmptyState } from '@/components/ui/EmptyState'
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 
-export default async function CustomersPage({ searchParams }: { searchParams: { q?: string } }) {
+export default async function CustomersPage(props: { searchParams: Promise<{ q?: string }> }) {
+  const searchParams = await props.searchParams;
   const ctx = await getAuthContext()
   if (!ctx) redirect('/auth/sign-in')
 

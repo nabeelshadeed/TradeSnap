@@ -2,7 +2,8 @@ import { getAuthContext } from '@/lib/auth/get-auth'
 import { redirect } from 'next/navigation'
 import { JobWizard } from './JobWizard'
 
-export default async function NewJobPage({ searchParams }: { searchParams: { customerId?: string } }) {
+export default async function NewJobPage(props: { searchParams: Promise<{ customerId?: string }> }) {
+  const searchParams = await props.searchParams;
   const ctx = await getAuthContext()
   if (!ctx) redirect('/auth/sign-in')
 

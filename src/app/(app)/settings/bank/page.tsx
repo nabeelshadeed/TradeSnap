@@ -4,7 +4,8 @@ import { TopBar } from '@/components/layout/TopBar'
 import { ArrowLeft, Landmark, CheckCircle, AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 
-export default async function BankPage({ searchParams }: { searchParams: { connected?: string; error?: string } }) {
+export default async function BankPage(props: { searchParams: Promise<{ connected?: string; error?: string }> }) {
+  const searchParams = await props.searchParams;
   const ctx = await getAuthContext()
   if (!ctx) redirect('/auth/sign-in')
 

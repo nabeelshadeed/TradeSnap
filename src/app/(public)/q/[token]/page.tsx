@@ -10,7 +10,8 @@ async function getQuoteData(token: string) {
   return res.json()
 }
 
-export default async function QuotePage({ params }: { params: { token: string } }) {
+export default async function QuotePage(props: { params: Promise<{ token: string }> }) {
+  const params = await props.params;
   const data = await getQuoteData(params.token)
   if (!data) notFound()
 

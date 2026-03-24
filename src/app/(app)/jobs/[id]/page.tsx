@@ -6,7 +6,8 @@ import { JobDetailClient } from './JobDetailClient'
 
 export const dynamic = 'force-dynamic'
 
-export default async function JobDetailPage({ params }: { params: { id: string } }) {
+export default async function JobDetailPage(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const ctx = await getAuthContext()
   if (!ctx) redirect('/auth/sign-in')
 

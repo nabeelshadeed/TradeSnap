@@ -13,7 +13,8 @@ import { Send, FileText, Phone, Zap } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
-export default async function PaymentsPage({ searchParams }: { searchParams: { filter?: string } }) {
+export default async function PaymentsPage(props: { searchParams: Promise<{ filter?: string }> }) {
+  const searchParams = await props.searchParams;
   const ctx = await getAuthContext()
   if (!ctx) redirect('/auth/sign-in')
 

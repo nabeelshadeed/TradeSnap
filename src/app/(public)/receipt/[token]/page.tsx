@@ -3,7 +3,8 @@ import { formatDate } from '@/lib/utils'
 
 export const dynamic = 'force-dynamic'
 
-export default async function ReceiptPage({ params }: { params: { token: string } }) {
+export default async function ReceiptPage(props: { params: Promise<{ token: string }> }) {
+  const params = await props.params;
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'
   const res = await fetch(`${baseUrl}/api/invoices/${params.token}`, { cache: 'no-store' })
   if (!res.ok) notFound()

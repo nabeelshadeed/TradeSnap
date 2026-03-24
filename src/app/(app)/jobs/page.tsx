@@ -23,11 +23,12 @@ const FILTER_STATUS_MAP: Record<string, string[]> = {
   paid: ['paid'],
 }
 
-export default async function JobsPage({
-  searchParams,
-}: {
-  searchParams: { status?: string }
-}) {
+export default async function JobsPage(
+  props: {
+    searchParams: Promise<{ status?: string }>
+  }
+) {
+  const searchParams = await props.searchParams;
   const ctx = await getAuthContext()
   if (!ctx) redirect('/auth/sign-in')
 

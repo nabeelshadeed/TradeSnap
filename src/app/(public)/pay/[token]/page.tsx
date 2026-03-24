@@ -11,7 +11,8 @@ async function getInvoiceData(token: string) {
   return res.json()
 }
 
-export default async function PayPage({ params }: { params: { token: string } }) {
+export default async function PayPage(props: { params: Promise<{ token: string }> }) {
+  const params = await props.params;
   const data = await getInvoiceData(params.token)
   if (!data) notFound()
 

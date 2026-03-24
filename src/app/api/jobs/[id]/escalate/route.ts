@@ -7,7 +7,8 @@ export const dynamic = 'force-dynamic'
 
 const ESCALATION_ORDER = ['none', 'reminder_1', 'reminder_2', 'firm_notice', 'final_notice', 'legal'] as const
 
-export async function POST(req: NextRequest, { params }: { params: { id: string } }) {
+export async function POST(req: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   const ctx = await getAuthContext()
   if (!ctx) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
