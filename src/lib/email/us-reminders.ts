@@ -21,7 +21,7 @@ function htmlWrapper(body: string, preheader = ''): string {
         <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
           <tr>
             <td style="background-color:#f97316;padding:24px 32px;">
-              <span style="font-size:20px;font-weight:700;color:#ffffff;">TradeSnap</span>
+              <span style="font-size:20px;font-weight:700;color:#ffffff;">SnapTrade</span>
             </td>
           </tr>
           <tr>
@@ -32,7 +32,7 @@ function htmlWrapper(body: string, preheader = ''): string {
           <tr>
             <td style="padding:20px 32px 28px 32px;border-top:1px solid #f4f4f5;">
               <p style="margin:0;font-size:12px;color:#71717a;line-height:1.5;">
-                This message was sent on behalf of your contractor via TradeSnap. To update your payment details or dispute this invoice, reply directly to this email.
+                This message was sent on behalf of your contractor via SnapTrade. To update your payment details or dispute this invoice, reply directly to this email.
               </p>
             </td>
           </tr>

@@ -1,8 +1,8 @@
-# TradeSnap — Real-Time Cash Flow Control for Trade Contractors
+# SnapTrade — Real-Time Cash Flow Control for Trade Contractors
 
 > Stop chasing payments. Get paid same day.
 
-TradeSnap turns site notes into professional prices in 90 seconds and automates every invoice and reminder, so trade contractors can focus on the work.
+SnapTrade turns site notes into professional prices in 90 seconds and automates every invoice and reminder, so trade contractors can focus on the work.
 
 ## Tech Stack
 
@@ -56,7 +56,7 @@ npm run db:push
 
 ### 6. Set up Cloudflare R2
 
-1. Create an R2 bucket named `tradesnap-docs`
+1. Create an R2 bucket named `snaptrade-docs`
 2. Create API credentials with `Object Read & Write` permissions
 
 ### 7. Set up Resend
@@ -167,4 +167,4 @@ This software is built for UK trade contractors and includes:
 
 ---
 
-Built with ⚡ by TradeSnap
+Built with ⚡ by SnapTrade

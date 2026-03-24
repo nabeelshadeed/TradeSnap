@@ -4,13 +4,13 @@ import { ToastProvider } from '@/components/ui/Toast'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'TradeSnap — Get Paid Faster',
+  title: 'SnapTrade — Get Paid Faster',
   description: 'Real-time cash flow control for trade contractors. Stop chasing payments.',
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'TradeSnap',
+    title: 'SnapTrade',
   },
 }
 

@@ -14,7 +14,7 @@ export default async function HomePage() {
           <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-sm">⚡</span>
           </div>
-          <span className="font-bold text-lg text-gray-900">TradeSnap</span>
+          <span className="font-bold text-lg text-gray-900">SnapTrade</span>
         </div>
         <div className="flex items-center gap-3">
           <Link href="/auth/sign-in" className="text-sm text-gray-600 hover:text-gray-900 font-medium">Sign in</Link>
@@ -36,7 +36,7 @@ export default async function HomePage() {
           Stop chasing payments.<br />Get paid same day.
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-          TradeSnap turns site notes into professional prices in 90 seconds — and automates every invoice and reminder, so you can focus on the work.
+          SnapTrade turns site notes into professional prices in 90 seconds — and automates every invoice and reminder, so you can focus on the work.
         </p>
         <Link
           href="/auth/sign-up"
@@ -54,7 +54,7 @@ export default async function HomePage() {
             { stat: '86 hrs', label: 'Lost per year chasing payments' },
             { stat: '£4,500', label: 'Average invoice written off' },
             { stat: '42 days', label: 'Average time to get paid' },
-            { stat: '12 days', label: 'TradeSnap average' },
+            { stat: '12 days', label: 'SnapTrade average' },
           ].map(item => (
             <div key={item.stat}>
               <p className="text-3xl font-black text-orange-400 mb-1">{item.stat}</p>
@@ -78,7 +78,7 @@ export default async function HomePage() {
             <p key={pain} className="text-base text-gray-400 line-through">{pain}</p>
           ))}
         </div>
-        <p className="text-xl font-bold text-gray-900">TradeSnap eliminates all of it.</p>
+        <p className="text-xl font-bold text-gray-900">SnapTrade eliminates all of it.</p>
       </section>
 
       {/* How it works */}
@@ -117,7 +117,7 @@ export default async function HomePage() {
               trade: 'Plumber, Bristol',
             },
             {
-              quote: "I had an invoice for £3,800 sitting unpaid for 6 weeks. TradeSnap sent 3 reminders and added the statutory interest. Got paid in full that week.",
+              quote: "I had an invoice for £3,800 sitting unpaid for 6 weeks. SnapTrade sent 3 reminders and added the statutory interest. Got paid in full that week.",
               name: 'David K.',
               trade: 'Roofer, Leeds',
             },
@@ -149,7 +149,7 @@ export default async function HomePage() {
                 name: 'Starter',
                 price: '£29',
                 period: '/month',
-                features: ['50 jobs/month', 'AI quote generation', 'Auto payment reminders', 'Price book', 'No TradeSnap branding'],
+                features: ['50 jobs/month', 'AI quote generation', 'Auto payment reminders', 'Price book', 'No SnapTrade branding'],
                 cta: 'Start free',
                 featured: true,
               },
@@ -207,7 +207,7 @@ export default async function HomePage() {
 
       {/* Footer */}
       <footer className="border-t border-gray-100 px-6 py-8 text-center">
-        <p className="text-sm text-gray-400">© 2025 TradeSnap · Built for the trades</p>
+        <p className="text-sm text-gray-400">© 2025 SnapTrade · Built for the trades</p>
       </footer>
     </div>
   )

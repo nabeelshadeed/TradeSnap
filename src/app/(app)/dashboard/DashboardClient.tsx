@@ -94,7 +94,7 @@ export function DashboardClient({
         <div className="bg-orange-50 border border-orange-200 rounded-xl px-4 py-3 flex items-center gap-3">
           <Zap size={16} className="text-orange-500 shrink-0" />
           <p className="text-sm text-orange-800">
-            <strong>TradeSnap</strong> — {PROBLEM_MESSAGES[biggestProblem]}
+            <strong>SnapTrade</strong> — {PROBLEM_MESSAGES[biggestProblem]}
           </p>
         </div>
       )}

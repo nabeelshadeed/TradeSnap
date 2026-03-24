@@ -20,7 +20,7 @@ export function Sidebar() {
         <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
           <Zap size={16} className="text-white" />
         </div>
-        <span className="text-white font-bold text-base tracking-tight">TradeSnap</span>
+        <span className="text-white font-bold text-base tracking-tight">SnapTrade</span>
       </div>
 
       {/* New Job button */}

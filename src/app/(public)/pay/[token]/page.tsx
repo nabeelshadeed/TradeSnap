@@ -269,7 +269,7 @@ export default async function PayPage({ params }: { params: { token: string } })
 
         {/* Footer */}
         <p style={{ textAlign: 'center', fontSize: 11, color: '#d1d5db', marginTop: 24 }}>
-          Sent via TradeSnap
+          Sent via SnapTrade
         </p>
       </div>
     </div>

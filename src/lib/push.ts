@@ -1,7 +1,7 @@
 export function getWebPush() {
   const webpush = require('web-push')
   webpush.setVapidDetails(
-    'mailto:support@tradesnap.app',
+    'mailto:support@snaptrade.app',
     process.env.VAPID_PUBLIC_KEY!,
     process.env.VAPID_PRIVATE_KEY!
   )

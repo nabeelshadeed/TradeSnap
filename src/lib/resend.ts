@@ -7,4 +7,4 @@ export function getResend() {
   return _resend!
 }
 
-export const EMAIL_FROM = `${process.env.EMAIL_FROM_NAME ?? 'TradeSnap'} <${process.env.EMAIL_FROM ?? 'jobs@tradesnap.app'}>`
+export const EMAIL_FROM = `${process.env.EMAIL_FROM_NAME ?? 'SnapTrade'} <${process.env.EMAIL_FROM ?? 'jobs@snaptrade.app'}>`

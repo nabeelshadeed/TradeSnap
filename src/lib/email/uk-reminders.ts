@@ -12,7 +12,7 @@ function htmlWrapper(body: string, preheader: string = ''): string {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TradeSnap</title>
+  <title>SnapTrade</title>
 </head>
 <body style="margin:0;padding:0;background-color:#f4f4f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
   ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">${preheader}</div>` : ''}
@@ -23,7 +23,7 @@ function htmlWrapper(body: string, preheader: string = ''): string {
           <!-- Header -->
           <tr>
             <td style="background-color:#f97316;padding:24px 32px;">
-              <span style="font-size:20px;font-weight:700;color:#ffffff;letter-spacing:-0.3px;">TradeSnap</span>
+              <span style="font-size:20px;font-weight:700;color:#ffffff;letter-spacing:-0.3px;">SnapTrade</span>
             </td>
           </tr>
           <!-- Body -->
@@ -36,7 +36,7 @@ function htmlWrapper(body: string, preheader: string = ''): string {
           <tr>
             <td style="padding:20px 32px 28px 32px;border-top:1px solid #f4f4f5;">
               <p style="margin:0;font-size:12px;color:#71717a;line-height:1.5;">
-                This email was sent by TradeSnap on behalf of your contractor. If you have a query about this invoice, please reply to this email or contact your contractor directly.
+                This email was sent by SnapTrade on behalf of your contractor. If you have a query about this invoice, please reply to this email or contact your contractor directly.
               </p>
             </td>
           </tr>

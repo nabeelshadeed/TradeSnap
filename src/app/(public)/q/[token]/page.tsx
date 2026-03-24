@@ -172,7 +172,7 @@ export default async function QuotePage({ params }: { params: { token: string } 
         <p className="text-center text-xs text-gray-400 pb-4">
           Sent by {contractor.name} · <a href={`mailto:${contractor.email}`} className="underline">{contractor.email}</a>
           <br />
-          <span className="text-gray-300">Sent via TradeSnap</span>
+          <span className="text-gray-300">Sent via SnapTrade</span>
         </p>
       </div>
     </div>

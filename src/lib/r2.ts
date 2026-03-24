@@ -16,7 +16,7 @@ export function getR2(): S3Client {
   return _r2!
 }
 
-export const R2_BUCKET = process.env.R2_BUCKET_NAME ?? 'tradesnap-docs'
+export const R2_BUCKET = process.env.R2_BUCKET_NAME ?? 'snaptrade-docs'
 
 export async function getSignedUploadUrl(key: string, contentType: string): Promise<string> {
   const { getSignedUrl } = require('@aws-sdk/s3-request-presigner')
