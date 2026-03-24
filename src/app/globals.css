@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #f97316;
+  --primary-dk: #ea580c;
+  --success: #16a34a;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --dark: #0f172a;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --surface: #f9fafb;
+  --card: #ffffff;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: var(--surface);
+  color: var(--text);
+}
+
+input,
+select,
+textarea {
+  font-size: 16px !important;
+}
+
+.safe-area-pb {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@layer utilities {
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ─── Workflow animations ─────────────────────────────────────────── */
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(18px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-18px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes pop-in {
+  0%   { opacity: 0; transform: scale(0.94); }
+  60%  { transform: scale(1.02); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes hammer-tap {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  25%       { transform: rotate(-22deg) translateY(-2px); }
+  50%       { transform: rotate(0deg) translateY(0); }
+  75%       { transform: rotate(-14deg) translateY(-1px); }
+}
+@keyframes check-draw {
+  from { stroke-dashoffset: 40; opacity: 0; }
+  to   { stroke-dashoffset: 0;  opacity: 1; }
+}
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(249,115,22,0.4); }
+  70%  { box-shadow: 0 0 0 12px rgba(249,115,22,0); }
+  100% { box-shadow: 0 0 0 0 rgba(249,115,22,0); }
+}
+@keyframes float-up {
+  0%   { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.animate-slide-in-right { animation: slide-in-right 0.22s ease-out both; }
+.animate-slide-in-left  { animation: slide-in-left  0.22s ease-out both; }
+.animate-pop-in         { animation: pop-in 0.25s ease-out both; }
+.animate-hammer         { animation: hammer-tap 0.5s ease-in-out infinite; transform-origin: bottom right; }
+.animate-pulse-ring     { animation: pulse-ring 1.4s ease-out infinite; }
+.animate-float-up       { animation: float-up 0.2s ease-out both; }
+.animate-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 400px 100%;
+  animation: shimmer 1.2s infinite linear;
+}

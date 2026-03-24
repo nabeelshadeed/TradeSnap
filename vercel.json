@@ -1,0 +1,27 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/payment-reminders",
+      "schedule": "0 8 * * *"
+    },
+    {
+      "path": "/api/cron/ob-sync",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/cron/stats-refresh",
+      "schedule": "0 0 * * *"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(self), geolocation=()" }
+      ]
+    }
+  ]
+}
