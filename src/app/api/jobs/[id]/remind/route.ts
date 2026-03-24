@@ -1,39 +1,41 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getAuthContext } from '@/lib/auth/get-auth'
 import { getDb, schema } from '@/lib/db'
+import { getResend, EMAIL_FROM } from '@/lib/resend'
 import { eq, and } from 'drizzle-orm'
 
 export const dynamic = 'force-dynamic'
 
 export async function POST(req: NextRequest, props: { params: Promise<{ id: string }> }) {
-  const params = await props.params;
-  const ctx = await getAuthContext()
-  if (!ctx) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  try {
+    const params = await props.params
+    const ctx = await getAuthContext()
+    if (!ctx) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const db = getDb()
-  const job = await db.query.jobs.findFirst({
-    where: and(eq(schema.jobs.id, params.id), eq(schema.jobs.contractorId, ctx.contractorId)),
-    with: { customer: true, contractor: true },
-  })
-  if (!job) return NextResponse.json({ error: 'Not found' }, { status: 404 })
-  if (!job.invoiceToken) return NextResponse.json({ error: 'No invoice to remind about' }, { status: 400 })
-  if (!job.customer?.email) return NextResponse.json({ error: 'Customer has no email address' }, { status: 400 })
+    const db = getDb()
+    const job = await db.query.jobs.findFirst({
+      where: and(eq(schema.jobs.id, params.id), eq(schema.jobs.contractorId, ctx.contractorId)),
+      with: { customer: true, contractor: true },
+    })
+    if (!job) return NextResponse.json({ error: 'Not found' }, { status: 404 })
+    if (!job.invoiceToken) return NextResponse.json({ error: 'No invoice to remind about' }, { status: 400 })
+    if (!job.customer?.email) return NextResponse.json({ error: 'Customer has no email address' }, { status: 400 })
 
-  const country = (job.contractor.operatingCountry ?? 'UK') as 'UK' | 'US'
-  const sym = country === 'UK' ? '£' : '$'
-  const balance = parseFloat(String(job.balanceDue ?? 0))
-  const payUrl = `${process.env.NEXT_PUBLIC_APP_URL}/pay/${job.invoiceToken}`
-  const dueDate = job.dueDateAt
-    ? new Date(job.dueDateAt).toLocaleDateString(country === 'UK' ? 'en-GB' : 'en-US', { day: 'numeric', month: 'short', year: 'numeric' })
-    : 'as agreed'
+    const country = (job.contractor.operatingCountry ?? 'UK') as 'UK' | 'US'
+    const sym = country === 'UK' ? '£' : '$'
+    const balance = parseFloat(String(job.balanceDue ?? 0))
+    const payUrl = `${process.env.NEXT_PUBLIC_APP_URL}/pay/${job.invoiceToken}`
+    const dueDate = job.dueDateAt
+      ? new Date(job.dueDateAt).toLocaleDateString(country === 'UK' ? 'en-GB' : 'en-US', { day: 'numeric', month: 'short', year: 'numeric' })
+      : 'as agreed'
 
-  const isOverdue = job.dueDateAt && new Date(job.dueDateAt) < new Date()
+    const isOverdue = job.dueDateAt && new Date(job.dueDateAt) < new Date()
 
-  const subject = isOverdue
-    ? `Friendly reminder — ${job.invoiceNumber ?? job.referenceNumber} overdue`
-    : `Payment reminder — ${job.invoiceNumber ?? job.referenceNumber}`
+    const subject = isOverdue
+      ? `Friendly reminder — ${job.invoiceNumber ?? job.referenceNumber} overdue`
+      : `Payment reminder — ${job.invoiceNumber ?? job.referenceNumber}`
 
-  const html = `
+    const html = `
 <!DOCTYPE html>
 <html>
 <head><meta name="viewport" content="width=device-width, initial-scale=1" /></head>
@@ -85,8 +87,6 @@ export async function POST(req: NextRequest, props: { params: Promise<{ id: stri
 </body>
 </html>`.trim()
 
-  try {
-    const { getResend, EMAIL_FROM } = require('@/lib/resend')
     const resend = getResend()
     await resend.emails.send({
       from: `${job.contractor.name} <${EMAIL_FROM}>`,
@@ -95,15 +95,15 @@ export async function POST(req: NextRequest, props: { params: Promise<{ id: stri
       subject,
       html,
     })
-  } catch (err) {
-    console.error('[remind] email send failed:', err)
-    return NextResponse.json({ error: 'Failed to send reminder email' }, { status: 500 })
+
+    // Track that a reminder was sent
+    await db.update(schema.jobs)
+      .set({ updatedAt: new Date() })
+      .where(eq(schema.jobs.id, params.id))
+
+    return NextResponse.json({ ok: true })
+  } catch (err: any) {
+    console.error('[remind]', err)
+    return NextResponse.json({ error: err.message ?? 'Failed to send reminder' }, { status: 500 })
   }
-
-  // Track that a reminder was sent
-  await db.update(schema.jobs)
-    .set({ updatedAt: new Date() })
-    .where(eq(schema.jobs.id, params.id))
-
-  return NextResponse.json({ ok: true })
 }

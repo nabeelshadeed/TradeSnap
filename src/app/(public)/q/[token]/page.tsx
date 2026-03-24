@@ -37,7 +37,7 @@ export default async function QuotePage(props: { params: Promise<{ token: string
       <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-2xl mx-auto px-4 py-3 flex items-center gap-3">
           {contractor.logoUrl ? (
-            <img src={contractor.logoUrl} alt={contractor.name} className="h-8 w-auto" />
+            <img src={contractor.logoUrl} alt={contractor.name} className="h-8 w-auto" loading="lazy" />
           ) : (
             <div
               className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm"

@@ -207,7 +207,7 @@ export default async function HomePage() {
 
       {/* Footer */}
       <footer className="border-t border-gray-100 px-6 py-8 text-center">
-        <p className="text-sm text-gray-400">© 2025 SnapTrade · Built for the trades</p>
+        <p className="text-sm text-gray-400">© {new Date().getFullYear()} SnapTrade · Built for the trades</p>
       </footer>
     </div>
   )

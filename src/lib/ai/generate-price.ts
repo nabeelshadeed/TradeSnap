@@ -1,3 +1,5 @@
+import Anthropic from '@anthropic-ai/sdk'
+
 export interface GeneratedLineItem {
   description: string
   quantity: number
@@ -207,8 +209,7 @@ function validateGeneratedPrice(parsed: unknown): asserts parsed is GeneratedPri
 }
 
 export async function generatePrice(input: GeneratePriceInput): Promise<GeneratedPrice> {
-  const Anthropic = require('@anthropic-ai/sdk')
-  const client = new Anthropic.default({ apiKey: process.env.ANTHROPIC_API_KEY! })
+  const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! })
 
   const systemPrompt =
     input.country === 'UK'
@@ -216,7 +217,7 @@ export async function generatePrice(input: GeneratePriceInput): Promise<Generate
       : buildUsSystemPrompt(input)
 
   const message = await client.messages.create({
-    model: 'claude-opus-4-5',
+    model: 'claude-opus-4-6',
     max_tokens: 2000,
     system: systemPrompt,
     messages: [{ role: 'user', content: input.transcript }],
@@ -242,11 +243,10 @@ export async function suggestAdditionalItems(params: {
   tradeType: string
   existingItems: string[]
 }): Promise<GeneratedLineItem[]> {
-  const Anthropic = require('@anthropic-ai/sdk')
-  const client = new Anthropic.default({ apiKey: process.env.ANTHROPIC_API_KEY! })
+  const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! })
 
   const message = await client.messages.create({
-    model: 'claude-opus-4-5',
+    model: 'claude-opus-4-6',
     max_tokens: 500,
     messages: [{
       role: 'user',

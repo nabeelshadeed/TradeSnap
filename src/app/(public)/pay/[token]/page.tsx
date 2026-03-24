@@ -55,6 +55,7 @@ export default async function PayPage(props: { params: Promise<{ token: string }
                   <img
                     src={contractor.logoUrl}
                     alt={contractor.name}
+                    loading="lazy"
                     style={{ height: 44, width: 'auto', maxWidth: 120, objectFit: 'contain' }}
                   />
                 ) : (

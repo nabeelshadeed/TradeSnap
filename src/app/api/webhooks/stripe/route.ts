@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getDb, schema } from '@/lib/db'
+import { getStripe } from '@/lib/stripe'
 import { eq } from 'drizzle-orm'
 
 export const dynamic = 'force-dynamic'
@@ -8,7 +9,7 @@ export async function POST(req: NextRequest) {
   const body = await req.text()
   const signature = req.headers.get('stripe-signature')!
 
-  const stripe = require('@/lib/stripe').getStripe()
+  const stripe = getStripe()
   let event: any
   try {
     event = stripe.webhooks.constructEvent(body, signature, process.env.STRIPE_WEBHOOK_SECRET!)

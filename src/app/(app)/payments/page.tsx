@@ -6,10 +6,11 @@ import { AgingBuckets } from '@/components/payments/AgingBuckets'
 import { MoneyDisplay } from '@/components/ui/MoneyDisplay'
 import { Badge } from '@/components/ui/Badge'
 import { EmptyState } from '@/components/ui/EmptyState'
+import { PaymentActionButtons } from '@/components/payments/PaymentActionButtons'
 import { calculateStatutoryInterest } from '@/lib/legal'
 import { daysOverdue, formatDate } from '@/lib/utils'
 import Link from 'next/link'
-import { Send, FileText, Phone, Zap } from 'lucide-react'
+import { Phone } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
@@ -143,32 +144,9 @@ export default async function PaymentsPage(props: { searchParams: Promise<{ filt
                     </div>
                   </div>
 
-                  {/* Action buttons — touch-friendly height */}
+                  {/* Action buttons */}
                   <div className="flex gap-2 mt-3 flex-wrap">
-                    {!isOverdue && (
-                      <button className="flex items-center gap-2 px-4 py-2.5 bg-blue-500 active:bg-blue-600 text-white rounded-xl text-sm font-semibold" style={{ minHeight: 44 }}>
-                        <Send size={14} />
-                        Remind
-                      </button>
-                    )}
-                    {isOverdue && days < 7 && (
-                      <button className="flex items-center gap-2 px-4 py-2.5 bg-amber-500 active:bg-amber-600 text-white rounded-xl text-sm font-semibold" style={{ minHeight: 44 }}>
-                        <Send size={14} />
-                        Firm Reminder
-                      </button>
-                    )}
-                    {isOverdue && days >= 7 && days < 14 && (
-                      <button className="flex items-center gap-2 px-4 py-2.5 bg-orange-500 active:bg-orange-600 text-white rounded-xl text-sm font-semibold" style={{ minHeight: 44 }}>
-                        <Zap size={14} />
-                        Escalate
-                      </button>
-                    )}
-                    {isOverdue && days >= 14 && (
-                      <button className="flex items-center gap-2 px-4 py-2.5 bg-red-600 active:bg-red-700 text-white rounded-xl text-sm font-semibold" style={{ minHeight: 44 }}>
-                        <Zap size={14} />
-                        Final Notice
-                      </button>
-                    )}
+                    <PaymentActionButtons jobId={job.id} isOverdue={isOverdue} days={days} />
                     <Link
                       href={`/jobs/${job.id}`}
                       className="flex items-center gap-2 px-4 py-2.5 bg-gray-100 active:bg-gray-200 text-gray-700 rounded-xl text-sm font-semibold"

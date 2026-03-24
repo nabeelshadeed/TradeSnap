@@ -1,20 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Next.js 15: moved out of experimental
+  serverExternalPackages: ['@react-pdf/renderer'],
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**.r2.cloudflarestorage.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'img.clerk.com',
-      },
+      { protocol: 'https', hostname: '**.r2.cloudflarestorage.com' },
+      { protocol: 'https', hostname: 'img.clerk.com' },
     ],
-  },
-  experimental: {
-    serverComponentsExternalPackages: ['@react-pdf/renderer'],
   },
   async headers() {
     return [
