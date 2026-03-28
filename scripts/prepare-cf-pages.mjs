@@ -9,6 +9,10 @@ copyFileSync(join(src, 'worker.js'), join(out, '_worker.js'))
 
 cpSync(join(src, 'server-functions'), join(out, 'server-functions'), { recursive: true })
 
+if (existsSync(join(src, 'cloudflare'))) {
+  cpSync(join(src, 'cloudflare'), join(out, 'cloudflare'), { recursive: true })
+}
+
 if (existsSync(join(src, 'middleware'))) {
   cpSync(join(src, 'middleware'), join(out, 'middleware'), { recursive: true })
 }
