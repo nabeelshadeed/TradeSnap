@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:cloudflare": "npx @opennextjs/cloudflare@latest build && node scripts/prepare-cf-pages.mjs",
+    "build:cloudflare": "npm install --include=dev && npx @opennextjs/cloudflare@latest build && node scripts/prepare-cf-pages.mjs",
     "preview": "npx wrangler pages dev",
     "start": "next start",
     "lint": "next lint",
