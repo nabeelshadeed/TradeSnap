@@ -23,10 +23,12 @@ export default async function BillingPage() {
           <h3 className="text-sm font-semibold text-gray-900 mb-3">Current plan</h3>
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-2xl font-black text-orange-500 capitalize">{plan}</p>
+              <p className="text-2xl font-black text-orange-500">
+                {plan === 'free' ? 'Free' : plan === 'starter' ? 'Solo' : plan === 'pro' ? 'Growing' : 'Business'}
+              </p>
               {plan === 'free' && <p className="text-sm text-gray-500">3 jobs/month</p>}
-              {plan === 'starter' && <p className="text-sm text-gray-500">50 jobs/month, AI quotes</p>}
-              {plan === 'pro' && <p className="text-sm text-gray-500">Unlimited, open banking, team</p>}
+              {plan === 'starter' && <p className="text-sm text-gray-500">50 jobs/month · AI quotes · Auto reminders</p>}
+              {plan === 'pro' && <p className="text-sm text-gray-500">Unlimited jobs · Up to 5 users · Open banking</p>}
               {plan === 'business' && <p className="text-sm text-gray-500">Everything + API access</p>}
             </div>
             {plan !== 'free' && (
@@ -44,8 +46,8 @@ export default async function BillingPage() {
           <div className="space-y-3">
             <h3 className="text-sm font-semibold text-gray-900">Upgrade your plan</h3>
             {[
-              { id: 'starter', name: 'Starter', price: '£29/mo', features: ['50 jobs/month', 'AI quotes', 'Auto reminders'] },
-              { id: 'pro', name: 'Pro', price: '£49/mo', features: ['Unlimited jobs', 'Open banking', 'Up to 5 users'] },
+              { id: 'starter', name: 'Solo', price: '£29/mo', features: ['50 jobs/month', 'AI quotes', 'Auto reminders', 'Remove branding'] },
+              { id: 'pro', name: 'Growing', price: '£49/mo', features: ['Unlimited jobs', 'Up to 5 users', 'Open banking', 'Change orders'] },
               { id: 'business', name: 'Business', price: '£99/mo', features: ['Up to 20 users', 'API access', 'VAT reports'] },
             ].filter(p => p.id !== plan).map(p => (
               <div key={p.id} className="bg-white rounded-xl border border-gray-200 p-4 flex items-center justify-between">
